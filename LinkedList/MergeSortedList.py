@@ -1,7 +1,10 @@
 from LinkedList import ListNode
 
 """
+LeetCode No.23
+https://leetcode.com/problems/merge-k-sorted-lists/
 Given a list of sorted LinkedList, merge them into a sorted LinkedList and return it
+There is another solution using heap
 """
 
 def mergeLists(lists)->ListNode:
@@ -28,21 +31,4 @@ def merge(l, r):
         cur = cur.next
     cur.next = l or r
     return dummy.next
-
-def mergeKLists(lists) -> ListNode:
-    if lists == None or lists==[]: return None
-    else:
-        # construct the queue first
-        queue=[]
-        # build the lists based on the queue
-        dummy = tail = ListNode()
-
-        while queue!=[]:
-            tail.next = queue.pop(0)
-            tail = tail.next
-            if tail.next!=None:
-                queue.append(queue.tail.next)
-
-        return dummy.next
-
 
