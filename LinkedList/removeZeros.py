@@ -1,5 +1,8 @@
 from LinkedList import ListNode as Node
-
+"""
+https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/
+LeetCode No.1171
+"""
 def removeZeroSumSublists(head: Node) -> Node:
     """Repeatedly delete consecutive sequences of nodes that sum to 0 until there are no such sequences.
     """
