@@ -5,6 +5,9 @@ Restriction: The solution set must not contain duplicate triplets
 
 https://leetcode.com/problems/3sum/
 LeetCode No.15
+
+https://leetcode.com/problems/3sum-closest/
+LeetCode No.16
 """
 
 
@@ -18,12 +21,14 @@ def threeSum_map(array: list, target):
     check = set()
 
     for i in range(len(array)):  # O(n)
-        for j in range(i, len(array)):  # O(n)
+        #print(check)
+        for j in range(i+1, len(array)):  # O(n)
             diff = target - array[i] - array[j]
-            if (diff in d) and (d[diff] > j) and ([i, j] not in check):  # O(1)
+            #print(i,j)
+            if (diff in d) and (d[diff] > j) and ((array[i],array[j]) not in check):  # O(1)
                 result.append((array[i], array[j], diff))
-                check.add([i, j])
-                result.append((array[i], array[j], d[diff]))
+                check.add((array[i],array[j]))
+
     # the above loop takes O(n^2)
     return result
 
@@ -58,3 +63,25 @@ def threeSum_pointer(array: list, target):
                 r -= 1
         # the above loop takes O(n^2)
     return result
+
+def threeSum_closet(array:list,target:int)->int:
+    array.sort()
+    n=len(array)
+    result=array[n-3:]
+    for i in range(n-2):
+        start , end = i+1, n-1
+        while start<end:
+            sums = array[i]+array[start]+array[end]
+            if abs(sums-target)<abs(result-target):
+                result=sums
+            if sums>target:
+                end-=1
+            else:
+                start+=1
+    return result
+
+
+if __name__ == "__main__":
+    array=[-1,0,1,2,-1,-4]
+    print(threeSum_map(array,0))
+    print(threeSum_pointer(array,0))

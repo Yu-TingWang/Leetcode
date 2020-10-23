@@ -2,6 +2,8 @@
 TwoSum problem:
 Given an array of int and a target, return the pair of index that would sum to this target number.
 Restriction: an element can only be used once
+https://leetcode.com/problems/two-sum/
+LeetCode No.1
 '''
 
 def twoSum_map(array:list,target:int)->list:
