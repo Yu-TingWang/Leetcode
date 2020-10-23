@@ -2,3 +2,6 @@
 *.iml
 *.log
 *.pdf
+union/*
+leet-venv/*
+venv/*
