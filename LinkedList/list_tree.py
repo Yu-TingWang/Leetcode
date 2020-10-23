@@ -1,3 +1,5 @@
+import BinaryTree
+
 from BinaryTree import Node as TreeNode
 from LinkedList import ListNode
 

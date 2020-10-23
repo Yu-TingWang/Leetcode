@@ -1,7 +1,8 @@
 from BinaryTree import Node
+
 """
 **** This is buggy
-def resursiveBuild(inorder:list,postorder:list)->Node:
+def resursiveBuild(inorder:list,postorder:list)->BinaryNode:
     n = len(inorder)
     d={}
     for i in range(n):
@@ -11,7 +12,7 @@ def resursiveBuild(inorder:list,postorder:list)->Node:
         if startin>endin:
             return None
         curr = postorder[postindex[0]]
-        node = Node(curr)
+        node = BinaryNode(curr)
         postindex[0]-=1
         if startin==endin:
             return node
@@ -23,11 +24,12 @@ def resursiveBuild(inorder:list,postorder:list)->Node:
     return build(inorder,postorder,0,n-1,[n-1],d)
 """
 
-def buildTree(inorder:list,postorder:list)->Node:
+
+def buildTree(inorder: list, postorder: list) -> Node:
     """Construct a binary tree from inorder and postorder """
-    if inorder==[]:
+    if inorder == []:
         return None
-    if len(inorder)==1:
+    if len(inorder) == 1:
         return Node(inorder.pop())
 
     def traverse(inorder, postorder) -> int:
@@ -38,7 +40,8 @@ def buildTree(inorder:list,postorder:list)->Node:
         for i in range(len(postorder) - 1, -1, -1):
             if postorder[i] in in_set:
                 return i
-    root_index = traverse(inorder,postorder)
+
+    root_index = traverse(inorder, postorder)
     root_val = postorder[root_index]
 
     def search(inorder, val) -> int:
@@ -47,12 +50,11 @@ def buildTree(inorder:list,postorder:list)->Node:
             if inorder[i] == val:
                 return i
 
-    split_index = search(inorder,root_val)
+    split_index = search(inorder, root_val)
     # slice inorder to left and right
     left_in = inorder[:split_index]
-    right_in = inorder[split_index+1:]
-    root=Node(root_val)
-    root.left = buildTree(left_in,postorder)
-    root.right = buildTree(right_in,postorder)
+    right_in = inorder[split_index + 1:]
+    root = Node(root_val)
+    root.left = buildTree(left_in, postorder)
+    root.right = buildTree(right_in, postorder)
     return root
-

@@ -10,3 +10,9 @@ class ListNode:
             self=self.next
         array = array[:-1] + "]"
         return array
+
+if __name__ == "__main__":
+    l = ListNode(0)
+    print(l)
+    k = ListNode()
+    print(k)

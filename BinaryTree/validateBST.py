@@ -1,11 +1,16 @@
 from BinaryTree import Node
 """
 Return True if the binary Tree is a valid BST.
+
+https://leetcode.com/problems/validate-binary-search-tree/
+LeetCode No.98
 """
 def validate_BST(root:Node)->bool:
     from BinaryTree.dfs import InOrder
+    # inorder traversal of BST must be sorted
     array = InOrder(root)
     validate = array.copy()
+    # check if its inorder is sorted
     return array == validate.sort()
 
 def validateBST(root:Node)->bool:
@@ -43,3 +48,5 @@ def isValidBST(root:Node, prev=None)->bool:
     prev = root
     right = isValidBST(root.right)
     return left and right
+
+

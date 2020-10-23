@@ -3,5 +3,7 @@
 *.log
 *.pdf
 union/*
+out/*
 leet-venv/*
 venv/*
+src/*

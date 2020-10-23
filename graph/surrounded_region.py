@@ -22,12 +22,14 @@ def capture(board:list)->list:
     # mark all O that is not surrounded by X as B, which always starts from the border
     rows=len(board)
     columns=len(board[0])
+    # deal with the right most and bottom most rows
     for i in range(rows):
         for j in range(0,columns,columns-1):
             print('capture',i,j)
             if board[i][j]=='O':
                 print('capture1',i,j)
                 flip(board,i,j)
+    # deal wiht the left most and right most columns
     for i in range(0,rows,rows-1):
         for j in range(columns):
             if board[i][j]=='O':

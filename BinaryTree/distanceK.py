@@ -9,7 +9,7 @@ def distanceK(root:Node,target:Node,k:int) -> list:
     """
     Return a list of the values of all nodes that have a distance K from the target node.
     :param root:
-    :param target:
+    :param target: BinaryNode
     :param k:
     :return:
     """
