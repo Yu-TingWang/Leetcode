@@ -11,7 +11,7 @@ def validate_BST(root:Node)->bool:
     array = InOrder(root)
     validate = array.copy()
     # check if its inorder is sorted
-    return array == validate.sort()
+    return array == validate.sort() and len(array)==len(set(array))
 
 def validateBST(root:Node)->bool:
     """
@@ -27,7 +27,7 @@ def validateBST(root:Node)->bool:
             stack.append(root)
             root = root.left
         root = stack.pop()
-        if not pre and root.val<=pre.val:
+        if pre!=None and root.val<=pre.val:
             return False
         pre = root
         root = root.right

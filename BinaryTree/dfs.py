@@ -72,4 +72,5 @@ if __name__=='__main__':
     root.right.right = Node(7)
     p = root.left.right
     q = root.left.left
+    print(InOrder(root))
 
