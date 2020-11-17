@@ -17,7 +17,7 @@ def InOrder(root)->list:
     result=[]
     while True:
         if curr!=None:
-            stack.append(curr.left)
+            stack.append(curr)
             curr=curr.left
         elif stack!=[]:
             curr = stack.pop()
@@ -72,3 +72,4 @@ if __name__=='__main__':
     root.right.right = Node(7)
     p = root.left.right
     q = root.left.left
+
