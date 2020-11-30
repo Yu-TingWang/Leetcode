@@ -4,18 +4,6 @@ Given an array of integers and an integer k, return the total number of continuo
 https://leetcode.com/problems/subarray-sum-equals-k/
 LeetCode No.560
 """
-
-def subarraySum(array:list,k:int)->int:
-    """
-    :param array:list[int]
-    :param k: int, the target sum
-    :return: int, the amount of continuous subarray who sums to k.
-    """
-    cum=0
-    total=0
-
-
-
 def subarray_sum(nums: list, k: int) -> int:
     """
     O(n^2) time, O(n) space.
@@ -34,3 +22,12 @@ def subarray_sum(nums: list, k: int) -> int:
             if cum[j]-cum[i]==k:
                 total+=1
     return total
+
+def subarraySum(array:list,k:int)->int:
+    """
+    :param array:list[int]
+    :param k: int, the target sum
+    :return: int, the amount of continuous subarray who sums to k.
+    """
+    cum=0
+    total=0
