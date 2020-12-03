@@ -1,8 +1,11 @@
-from BinaryTree import Node
+from leetcode.BinaryTree import Node
 
-from BinaryTree.bfs import levelOrder
+from leetcode.BinaryTree.bfs import levelOrder
 
 def LowestCommonAncestor(root,p,q):
+    """
+    Recursive Approach
+    """
     if root==None or p==root or q==root:
         # find p/q , return None if not found
         return root
@@ -15,6 +18,12 @@ def LowestCommonAncestor(root,p,q):
     else: # if left is None, then both nodes at are right sub-tree, which means
         # the LCA must be found in the right-subtree
         return left if left else right
+
+def lca(root,p,q):
+    """
+    Iterative Approach
+    """
+    pass
 
 
 
