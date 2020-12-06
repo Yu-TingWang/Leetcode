@@ -4,6 +4,7 @@ LeetCode No.287
 def findDuplicates(nums:list)->int:
     """
     O(n) time, no extra space
+    O(1) space
     Approach: Take advantage the property that nums only contains positive integers.
     Negate the element if its index as been visited, so when we encounter a negative number,
     it must be duplicated.
@@ -16,3 +17,5 @@ def findDuplicates(nums:list)->int:
             return abs(nums[i])
         else:
             nums[abs(nums[i])] = - nums[abs(nums[i])]
+
+

@@ -35,7 +35,7 @@ def missing_number(nums:list)->int:
 
 def missing_positive(nums:list)->int:
     """ No.41
-    Run in linear time complexity, ~O(n) space .
+    Run in O(n) time, ~O(n) space .
     :param nums: list[int], unsorted array.
     :return: the smallest missing positive integer.
     """
@@ -88,14 +88,49 @@ def missing_first_positive(nums:list)->int:
         ## why use a while loop not simly a if statement? cuz one swap might not be enough
         # skip the negative and those greater than length
         # move the element to its index ( ex. move 1 to nums[0])
+        j = 0
         while nums[i]>0 and nums[i]<=n and nums[nums[i]-1]!=nums[i]:
+            print(i, nums)
             temp = nums[i]
             nums[i] = nums[nums[i]-1]
             nums[nums[i]-1]=temp
+            j+=1
+            if j>10:
+                return 'hi'
     for i in range(n):
         if nums[i]!=i+1:
             return i+1
     # if not yet return, then the list contains all number from [1,n]
+    return n+1
+
+def firstMissingPositive(nums:list)->int:
+    '''No.41
+    Traverse the list for 3 times : O(n)*3 = O(n), no extra space is used.
+    Run in O(n) time, O(1) space.
+    Approach:
+    Similar with what we did in missing_number, but we have to take care of negative numbers and out of range numbers.
+    '''
+    n = len(nums)
+    # step 1: change all out of range number to n+1, range : [1:n]
+    # why change it to n+1 ? We can change it to any arbitrary number inside the range, but we will have to take care
+    # of the edge case where the number we substitute with is the first missing positive
+    # since n+1 will never be the answer, we do not have to take care of its edge case
+    for i in range(len(nums)):
+        if nums[i]>n or nums[i]<0:
+            nums[i] = n+1
+    # step 2: now the whole list has overlapped with the index and its number. take use of this feature
+    # marked the corresponding index of the number as negative to represent 'visited'
+    for i in range(len(nums)):
+        if abs(nums[i])<=n: # why check <=n ? because first it will make index out of range, second we dom't care about the value
+            # that is greater than n because we have substitute the out of range value with something greater than n
+            # why do nums[i]-1? because the index are 0:n-1, but the numbers are 1:n
+            nums[abs(nums[i])-1] = -abs(nums[abs(nums[i])-1])
+    # step 3: return the first index where nums[index] is positive
+    for i in range(len(nums)):
+        if nums[i]>0:
+            return i+1
+    # if reach here, it means that each number in the list has been visited, which mean the list has all number from 1 to n
+    # hence the first missing positive will simply be the one next to n
     return n+1
 
 
@@ -125,11 +160,11 @@ def find_disappeared_numbers(nums:list)->list:
     """
     for i in range(len(nums)):
         index = abs(nums[i])
-        nums[index] = -abs(nums[index])
-
+        nums[index-1] = -abs(nums[index-1])
     return [i+1 for i,num in enumerate(nums) if num>0]
 
 
 if __name__ == "__main__":
     array=[4,3,2,7,8,2,3,1]
-    print(disappeared_numbers(array))
+    #print(disappeared_numbers(array))
+    print(firstMissingPositive(array))
