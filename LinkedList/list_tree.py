@@ -1,7 +1,7 @@
-import BinaryTree
+import leetcode.BinaryTree
 
-from BinaryTree import Node as TreeNode
-from LinkedList import ListNode
+from leetcode.BinaryTree import Node as TreeNode
+from leetcode.LinkedList import ListNode
 
 
 def isSubPath(self, head: ListNode, root: TreeNode) -> bool:

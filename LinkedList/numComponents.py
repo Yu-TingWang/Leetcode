@@ -1,4 +1,4 @@
-from LinkedList import ListNode
+from leetcode.LinkedList import ListNode
 def numComponents(self, head: ListNode, G: list) -> int:
     """Return the number of connected components in G,
      where two values are connected if they appear consecutively in the linked list.

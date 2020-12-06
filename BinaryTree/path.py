@@ -1,6 +1,6 @@
 import collections
 
-from BinaryTree import Node
+from leetcode.BinaryTree import Node
 
 def dfs_paths(root:Node) -> list:
     """ dfs + recursion

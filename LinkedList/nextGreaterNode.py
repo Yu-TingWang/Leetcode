@@ -1,4 +1,4 @@
-from LinkedList import ListNode
+from leetcode.LinkedList import ListNode
 """
 Return the next larger value of a node.
 If there is no a larger node, than put 0.

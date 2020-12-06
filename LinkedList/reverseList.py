@@ -1,4 +1,4 @@
-from LinkedList import ListNode
+from leetcode.LinkedList import ListNode
 
 def reverseList(head:ListNode):
     prev=None
