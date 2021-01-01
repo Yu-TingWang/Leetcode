@@ -1,9 +1,11 @@
 .idea/*
 *.iml
 *.log
+*.xml
 *.pdf
 union/*
 out/*
 leet-venv/*
 venv/*
 src/*
+*/__pycache__/*
