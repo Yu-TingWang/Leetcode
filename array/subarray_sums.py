@@ -48,8 +48,8 @@ def subarraySum(array:list,k:int)->int:
     for i in range(len(array)):
         curr_sum += array[i]
         if (curr_sum - k) in d:
-            # if the difference between curr_sum and target is in map, then the subarray from index i to the index j has the differnece
-            # sum(array[i:j+1]) will equate to k
+            # if the difference between curr_sum and target is in map, then the subarray from index i to the index j
+            # has the differnece sum(array[i:j+1]) will equate to k
             total += d[curr_sum-k]
         d[curr_sum]+=1
     return total

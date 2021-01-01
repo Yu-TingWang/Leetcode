@@ -20,14 +20,13 @@ class LRUCache:
     def __init__(self, capacity: int):
         self.head = Node() # dummy pointer to head
         self.tail = Node() # dummy pointer to tail
-        from collections import defaultdict
-        self.node_map = defaultdict(lambda:None) #maps from key to the node
+        self.node_map = {} #maps from key to the node
         self.cap = capacity
 
     def get(self, key: int) -> int:
         result = -1 # if not found
-        node = self.node_map[key]
-        if node!=None:
+        if key in self.node_map:
+            node = self.node_map[key]
             result = node.val
             self.remove(node)
             self.add(node)
@@ -35,8 +34,8 @@ class LRUCache:
 
 
     def put(self, key: int, value: int) -> None:
-        node = self.node_map[key]
-        if node!=None:
+        if key in self.node_map:
+            node = self.node_map[key]
             self.remove(node)
             node.val = value
             self.add(node)

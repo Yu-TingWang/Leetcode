@@ -40,13 +40,18 @@ def expand_center(s:str):
     start=0
     end=0
     for i in range(len(s)): # this takes O(n)
+        print('i=',i,'s[i]=',s[i])
         # calling the helper function takes O(n) times
         len1 = expandFromMid(s,i,i+1) # case1
         len2 = expandFromMid(s,i,i)  # case 2, so the first iteration will check the same exact character
+        print('len1',len1,'len2',len2)
         max_len = max(len1,len2)
+        print('curr_max',max_len)
         if max_len > end-start:# i is the center
             start = i - (max_len-1)//2 # so we need to substract half of the length to get the start index
             end = i + (max_len)//2
+            print('start',start,'end',end)
+        print('='*20)
     return s[start:end+1]
 
 def expandFromMid(s:str,left:int,right:int)->int:
@@ -59,6 +64,7 @@ def expandFromMid(s:str,left:int,right:int)->int:
         return 0
     # as long as s[left:right) is palindrome, we will remain in the loop, hence keep expanding
     while left>=0 and right < len(s) and s[left]==s[right]:
+        print('left',left,'right',right)
         left -=1
         right +=1
     return right-left-1
@@ -67,15 +73,39 @@ def expandFromMid(s:str,left:int,right:int)->int:
 def dp(s:str):
     '''
     dynamic programming approach
+    Time: O(n^2)
+    Space:O(n^2)
     '''
-    states=[[]]
-    # states[i][j] True if s[i:j) is a palindrome
-    # states[i][j] = states[i+1][j-1] , if s[i] == s[j]
-    #              = False            , otherwise
+    states=[[False]*len(s)]*len(s)
+    result =''
+    for state in states:print(state)
+    # # states[i][j] True if s[i:j) is a palindrome
+    # # states[i][j] = states[i+1][j-1] , if s[i] == s[j]
+    # #              = False            , otherwise
+    # for i in range(len(s)-1,-1,-1):
+    #     for j in range(i,len(s)):
+    #         if s[i]==s[j] and (j-i<3 or states[i+1][j-1]):
+    #             states[i][j]=True
+    #         else:
+    #             states[i][j]=False
+    #             #states[i][j]= s[i]==s[j] and states[i+1][j-1] #(j-i<3 or )
+    #         if states[i][j] and j-i+1>len(result):
+    #             result = s[i:j+1]
+    #     print('i=',i,'j=',j)
+    #     for state in states:print(state)
+    # return result
 if __name__ == "__main__":
     s='racecar'
     k='aabbcd'
-    print(brute_force(s))
-    print(brute_force(k))
-    print(expand_center(s))
-    print(expand_center(k))
+    # print(brute_force(s))
+    # print(brute_force(k))
+    # print(s)
+    # print(expand_center(s))
+    # print("-"*30)
+    # print(k)
+    # print(expand_center(k))
+    # print('-'*30)
+    print('dp')
+    print(dp(s))
+    print('-'*60)
+    print(dp(k))
