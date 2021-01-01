@@ -1,4 +1,4 @@
-.idea/*
+.idea/
 *.iml
 *.log
 *.xml
@@ -8,4 +8,4 @@ out/*
 leet-venv/*
 venv/*
 src/*
-*/__pycache__/*
+__pycache__/
