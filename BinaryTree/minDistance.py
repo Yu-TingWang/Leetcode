@@ -1,11 +1,35 @@
-from BinaryTree import Node
+from leetcode.BinaryTree import Node
+'''
+https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+LeetCode No.236
+Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+According to the definition of LCA on Wikipedia: 
+“The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as 
+descendants (where we allow a node to be a descendant of itself).”
+'''
 
-"""
-Amazon OA:
-Find distance between two nodes of a Binary Tree
-Find the distance between two keys in a binary tree, no parent pointers are given. Distance between two
-nodes is the minimum number of edges to be traversed to reach one node from other.
-"""
+def leastCommonAncestor(root:Node,p:Node,q:Node)->Node:
+    stack = [root]
+    # for all nodes above p or q, create a mapping from the node to its parent
+    parents = {root:None}
+    while p not in parents or q not in parents:
+        curr = stack.pop()
+        if curr.right:
+            parents[curr.right] = curr
+            stack.append(curr.right)
+        if curr.left:
+            parents[curr.left] = curr
+            stack.append(curr.left)
+    # get all p's ancestors
+    ancestors = set()
+    while p:
+        p = parents[p]
+        ancestors(p)
+    # if in first iteration, q is in ancestors, then q is p's ancestor, which means q is the lca of q & p
+    # otherwise, keep getting q's parent
+    while q not in ancestors:
+        q = parents[q]
+    return q
 
 def lca(root:Node, p:Node, q:Node) -> Node:
     """Return the lowest common ancestor of p and q"""
@@ -31,10 +55,14 @@ def findPath(root:Node, arr:list, x:int):
     # Thus, remove current node's value from 'arr'and then return false
     arr.pop()
     return False
-
+"""
+Amazon OA:
+Find distance between two nodes of a Binary Tree
+Find the distance between two keys in a binary tree, no parent pointers are given. Distance between two
+nodes is the minimum number of edges to be traversed to reach one node from other.
+"""
 def minDistance(root:Node, p:Node, q:Node) -> int:
     parent = lca(root, p, q)
-
     #print(parent.val)
     parent_p = []
     findPath(parent, parent_p, p.val)
@@ -47,7 +75,7 @@ def minDistance(root:Node, p:Node, q:Node) -> int:
 
 def distanceK(root:Node,target:Node,k:int)->list:
     """Return a list of nodes that has distance k with target node"""
-    from BinaryTree.dfs import InOrder
+    from leetcode.BinaryTree.dfs import InOrder
     nodes = InOrder(root)
     result=[]
     for i in range(len(nodes)):

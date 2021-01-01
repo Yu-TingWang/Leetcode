@@ -23,10 +23,32 @@ def lca(root,p,q):
     """
     Iterative Approach
     """
-    pass
-
-
-
+    stack = [root]
+    parent = {root:None} # maps from child to its parent
+    # construct a map that map from all nodes from p to root, and from q to root
+    while p not in parent or q not in parent:
+        node = stack.pop()
+        print(node.val)
+        if node.left:
+            parent[node.left] = node
+            stack.append(node.left)
+        if node.right:
+            parent[node.right] = node
+            stack.append(node.right)
+    for node in parent:
+        if parent[node]:
+            print(node.val,'->',parent[node].val,end=';')
+        else:
+            print(node.val, '->', None, end=';')
+    #print([n.val]for n in stack)
+    print('\n')
+    ancestor = set()
+    while p:
+        ancestor.add(p)
+        p = parent[p]
+    while q not in ancestor:
+        q = parent[q]
+    return q
 
 if __name__=='__main__':
     root = Node(1)
@@ -50,15 +72,16 @@ if __name__=='__main__':
 
     for i in range(len(levels)):
         if i==0:
-            print(" " * 8, end =" ")
+            print(" " * 10, end =" ")
         if i==1:
-            print(" " * 6, end=" ")
+            print(" " * 8, end=" ")
         if i==2:
-            print(" "*3,end=" ")
+            print(" "*4,end=" ")
         print(levels[i])
 
     print("p",p.val,';q',q.val)
-
-    lca = LowestCommonAncestor(root,p,q)
-    print(lca.val)
+    print('-------------------------\n')
+    #lca = LowestCommonAncestor(root,p,q)
+    l = lca(root,p,q)
+    print(l)
 

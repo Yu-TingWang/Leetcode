@@ -40,7 +40,7 @@ def distance(root, target, K):
     connect(None, root)
     bfs = [target.val]
     seen = set(bfs)
-    for i in xrange(K):
+    for i in range(K):
         bfs = [y for x in bfs for y in conn[x] if y not in seen]
         seen |= set(bfs)
     return bfs
