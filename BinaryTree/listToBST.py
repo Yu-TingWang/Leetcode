@@ -1,4 +1,4 @@
-from BinaryTree import Node
+from leetcode.BinaryTree import Node
 """
 Given a list of integer, construct a height balanced binary search tree (AVL tree)
 """

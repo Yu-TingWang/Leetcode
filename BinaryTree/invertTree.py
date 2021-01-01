@@ -1,4 +1,4 @@
-from BinaryTree import Node
+from leetcode.BinaryTree import Node
 """
 Invert a Binary Tree
 ex.      1                      1

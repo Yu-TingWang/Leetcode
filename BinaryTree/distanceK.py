@@ -2,9 +2,9 @@ import collections
 
 from pip._vendor.msgpack.fallback import xrange
 
-from BinaryTree import Node
-from BinaryTree.minDistance import findPath, minDistance,lca
-from BinaryTree.dfs import InOrder
+from leetcode.BinaryTree import Node
+from leetcode.BinaryTree.minDistance import findPath, minDistance,lca
+from leetcode.BinaryTree.dfs import InOrder
 def distanceK(root:Node,target:Node,k:int) -> list:
     """
     Return a list of the values of all nodes that have a distance K from the target node.

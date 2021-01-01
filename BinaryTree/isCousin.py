@@ -1,4 +1,4 @@
-from BinaryTree import Node
+from leetcode.BinaryTree import Node
 
 def isCousins(root: Node, x: int, y: int) -> bool:
     """ Check if two nodes are cousins, not sibilings"""
