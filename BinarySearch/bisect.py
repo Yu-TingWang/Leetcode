@@ -48,15 +48,18 @@ def binaryFind(array:list,target:int,left:int,right:int)->bool:
     """
     Recursive approach.
     Return the index of target in array, if not found, return -1.
+    if there are multiple numbers equal to target in the array, return the first (left-most) index.
     :param array: list[int], a sorted array
     :param target: int, the number to be searched
-    :param left: int, the start index
-    :param right: int, the end index
+    :param left: int, the start index, first stack call one would be 0
+    :param right: int, the end index, first stack call one would be len(array)-1
     :return: if the target is in the array
     """
-    if right>=1:
+    if right>=left:
         mid = (left+right)//2
         if array[mid]==target:
+            while mid>0 and array[mid-1]==target:
+                mid-=1
             return mid
         elif array[mid]>target:
             return binaryFind(array,target,left,mid-1)
@@ -96,6 +99,7 @@ if __name__ == '__main__':
     # print(i)
     # i = binary_find(array,11)
     # print(i)
-    a=[0,1,2,3]
+    print('-----------')
+    a=[0,1,1,2,3]
     print(a)
-    print(binary_find(a,3))
+    print(binaryFind(a,1,0,len(a)-1))

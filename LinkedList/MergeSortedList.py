@@ -31,4 +31,40 @@ def merge(l, r):
         cur = cur.next
     cur.next = l or r
     return dummy.next
+import heapq
+def mergeKLists(lists:list)->ListNode:
+    '''
+    lists: list of ListNodes
+    '''
+    heap =[]
+    heapq.heapify(heap)
+    for i in range(len(lists)):
+        curr = lists[i]
+        while curr:
+            heapq.heappush(heap,curr.val)
+            curr = curr.next
+    dummy = ListNode()
+    curr = dummy
+    while heap:
+        curr.next = ListNode(heapq.heappop(heap))
+        curr = curr.next
+    return dummy.next
 
+from heapq import heapify,heappop,heappush,heapreplace
+def mergeK_linkedList(lists:list)->ListNode:
+    heap = [[head.val,i,head] for i,head in enumerate(lists) if head]
+    heapify(heap)
+    dummy = ListNode()
+    curr = dummy
+    while heap:
+        val,i,node = heap[0]
+        if not node.next:
+            heappop(heap)
+        else:
+            heapreplace(heap,[node.next.val,i,node.next])
+        curr.next = node
+        curr = curr.next
+    return dummy.next
+
+if __name__ == "__main__":
+    pass

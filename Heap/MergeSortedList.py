@@ -1,4 +1,5 @@
-from LinkedList import ListNode
+
+from leetcode.LinkedList import ListNode
 
 """
 LeetCode No.23

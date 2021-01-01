@@ -8,4 +8,4 @@ out/*
 leet-venv/*
 venv/*
 src/*
-*/__pycache__/*
+./*/__pycache__/*
